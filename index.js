@@ -84,8 +84,12 @@ app.delete("/Events/:_id", async (req, res) => {
 })
 
 app.get("/users", async(req,res) => {
-    const query = req.params;
-      
+  let query = {}
+    const email = req.query.email;
+    if(email){
+       query = {email : email}   
+    }
+     console.log(query) 
      const result = await RegesterEvents.find(query).toArray()
      console.log(result)
      res.send(result)
